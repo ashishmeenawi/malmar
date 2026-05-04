@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&display=swap');
+@import "tailwindcss";
+
+/* 🔥 Heading Font (Elicyon) */
+@font-face {
+  font-family: 'Elicyon';
+  src: url('/fonts/elicyon.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Elicyon-Regular';
+  src: url('/fonts/Elicyon-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Body Font (Antique) */
+@font-face {
+  font-family: 'AntiqueLegacy';
+  src: url('/fonts/antique.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Custom Antique Font */
+@font-face {
+  font-family: 'AntiqueCustom';
+  src: url('/fonts/Antique/Antique.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Sackers Font */
+@font-face {
+  font-family: 'SackersNav';
+  src: url('/fonts/Sackers Gothic Std Heavy/Sackers Gothic Std Heavy.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Sage Font */
+@font-face {
+  font-family: 'SageNav';
+  src: url('/fonts/sage-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Hero Font (Big Caslon CC Regular) */
+@font-face {
+  font-family: 'BigCaslonRegular';
+  src: url('/fonts/fonts/fonnts.com-Big_Caslon_CC.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Big Caslon CC Black */
+@font-face {
+  font-family: 'BigCaslonBlack';
+  src: url('/fonts/fonts/fonnts.com-Big_Caslon_CC_Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Maqotta Font */
+@font-face {
+  font-family: 'Maqotta';
+  src: url('/fonts/Maqotta.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 🔥 Instrument Sans Font */
+@font-face {
+  font-family: 'InstrumentSans';
+  src: url('/fonts/InstrumentSans_Condensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* ✅ Font variables */
+  --font-heading: 'Elicyon', serif;
+  --font-body: 'AntiqueLegacy', serif;
+  --font-nav-menu: 'AntiqueCustom', "antiqueCustom Fallback", sans-serif;
+  --font-hero: 'BigCaslonRegular', serif;
+  --font-sage: 'SageNav', sans-serif;
+
+  --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
+  --font-serif: var(--font-heading), serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ✅ Root & Body Reset for Mobile Flow */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Fix for iOS viewport height issues */
+.h-screen-ios {
+  height: 100vh;
+  height: 100svh;
+}
+
+/* Custom font for mobile menu/contact */
+@media (max-width: 767px) {
+  .mobile-special-font {
+    font-family: 'AntiqueCustom', "antiqueCustom Fallback", sans-serif !important;
+  }
+}
+
+/* 🔥 Apply heading font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+}
+
+/* Optional: match luxury style */
+h1 {
+  font-size: 64px;
+  line-height: 120%;
+}
+
+h2 {
+  font-size: 48px;
+  line-height: 120%;
+}
+
+@layer base {
+  ::selection {
+    background: #e7e5e4;
+    color: #1c1917;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Arc Marquee Styles */
+.arc-section {
+  background: #734128;
+  padding: 90px 0 20px;
+  overflow: hidden;
+}
+
+.arc-hero {
+  text-align: center;
+  padding: 0 24px 56px;
+}
+
+.arc-hero h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 600;
+  color: #f0dcc8;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.arc-hero p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #b07a60;
+  margin-top: 10px;
+}
+
+.arc-stage {
+  width: 100%;
+  position: relative;
+  height: 520px;
+  overflow: visible;
+}
+
+
+.arc-card {
+  position: absolute;
+  width: 350px;
+  height: 460px;
+  border-radius: 20px;
+  overflow: hidden;
+  transform-origin: center bottom;
+  will-change: transform;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.arc-card:hover {
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.75), 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 20 !important;
+}
+
+.arc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.5s ease;
+}
+
+.arc-card:hover img {
+  transform: scale(1.07);
+}
+
+.arc-hint {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0.4;
+}
+
+.arc-hint span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #c9a882;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.arc-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #c9a882;
+  animation: dp 1.6s ease-in-out infinite;
+}
+
+.arc-dot:nth-child(3) {
+  animation-delay: 0.25s;
+}
+
+.arc-dot:nth-child(4) {
+  animation-delay: 0.5s;
+}
+
+@keyframes dp {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
