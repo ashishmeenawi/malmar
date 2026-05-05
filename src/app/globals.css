@@ -321,3 +321,10 @@ h2 {
     transform: scale(1.5);
   }
 }
+
+/* Footer font (only for menu footer) */
+.footer-font {
+  font-family: 'AntiqueLegacy', serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

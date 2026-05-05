@@ -31,15 +31,11 @@ const Navbar = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsOverArc(entry.isIntersecting),
-      {
-        rootMargin: "-80px 0px -90% 0px",
-        threshold: 0,
-      }
+      { rootMargin: "-80px 0px -90% 0px", threshold: 0 }
     );
 
     const target = document.getElementById("arc-section");
     if (target) observer.observe(target);
-
     return () => observer.disconnect();
   }, []);
 
@@ -193,7 +189,7 @@ const Navbar = () => {
         className="fixed top-0 left-0 w-full h-screen z-[90] -translate-y-full flex flex-col justify-between px-6 md:px-12 py-10 md:py-20 text-black"
         style={{ backgroundColor: "#fcefd4" }}
       >
-        {/* MAIN */}
+        {/* MAIN MENU (still SageNav) */}
         <div className="flex-1 flex flex-col items-center justify-center space-y-6">
           {["Projects", "Services", "About"].map((item) => (
             <a
@@ -207,27 +203,30 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* FOOTER */}
-        <div className="menu-footer w-full flex flex-col space-y-12">
+        {/* FOOTER (AntiqueLegacy) */}
+        <div className="menu-footer w-full flex flex-col space-y-12 text-[12px]">
           <div className="flex justify-between">
+            {/* LEFT SOCIAL */}
             <div className="flex flex-col space-y-1">
               {["INSTAGRAM", "PINTEREST", "LINKEDIN", "FACEBOOK"].map((s) => (
-                <a key={s} href="#" className="uppercase nav-font">
+                <a key={s} href="#" className="uppercase footer-font">
                   {s}
                 </a>
               ))}
             </div>
 
+            {/* RIGHT LINKS */}
             <div className="flex flex-col space-y-1 text-right">
               {["TERMS OF SERVICE", "PRIVACY POLICY", "FAQs"].map((s) => (
-                <a key={s} href="#" className="uppercase nav-font">
+                <a key={s} href="#" className="uppercase footer-font">
                   {s}
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="text-center opacity-40 uppercase nav-font text-[10px] tracking-[0.2em]">
+          {/* BOTTOM TEXT */}
+          <div className="text-center opacity-40 uppercase footer-font text-8px] tracking-[0.2em]">
             REGISTERED TRADE MARK OF MALMAR 2026
           </div>
         </div>
