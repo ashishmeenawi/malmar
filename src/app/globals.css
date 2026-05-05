@@ -48,10 +48,18 @@
 /* 🔥 Sage Font */
 @font-face {
   font-family: 'SageNav';
-  src: url('/fonts/sage-webfont.woff') format('woff');
+  src: url('/fonts/sage-webfont.woff2') format('woff2'),
+       url('/fonts/sage-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+/* Navbar font fix (iOS safe) */
+.nav-font {
+  font-family: 'SageNav', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* 🔥 Hero Font (Big Caslon CC Regular) */
@@ -141,11 +149,7 @@ body {
 }
 
 /* Custom font for mobile menu/contact */
-@media (max-width: 767px) {
-  .mobile-special-font {
-    font-family: 'AntiqueCustom', "antiqueCustom Fallback", sans-serif !important;
-  }
-}
+
 
 /* 🔥 Apply heading font */
 h1,

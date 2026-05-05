@@ -130,16 +130,16 @@ const HeroSection = ({ isLoading }) => {
 
             {/* 📱 MOBILE → 4 LINES */}
             <div className="md:hidden text-center mt-16">
-              <div className="hero-line font-[SageNav] text-[26px] leading-[0.95]">
+              <div className="hero-line font-[SageNav] text-[30px] leading-[0.95]">
                 WE DESIGN
               </div>
-              <div className="hero-line font-[SageNav] text-[26px] leading-[0.95]">
+              <div className="hero-line font-[SageNav] text-[30px] leading-[0.95]">
                 Timeless
               </div>
-              <div className="hero-line font-[SageNav] text-[26px] leading-[0.95] italic">
+              <div className="hero-line font-[SageNav] text-[30px] leading-[0.95] italic">
                 Tailored
               </div>
-              <div className="hero-line font-[SageNav] text-[26px] leading-[0.95] italic">
+              <div className="hero-line font-[SageNav] text-[30px] leading-[0.95] italic">
                 Spaces
               </div>
             </div>
@@ -150,15 +150,15 @@ const HeroSection = ({ isLoading }) => {
               <div
                 className="hero-line text-center w-full mt-16 md:mt-24 
                 font-[SageNav] font-normal 
-                text-[55px] leading-[0.9]"
+                text-[45px] leading-[0.9]"
               >
-                WE DESIGN Timeless
+                we design timeless
               </div>
 
               <div
                 className="hero-line w-full flex justify-center items-center 
                 font-[SageNav] font-normal 
-                text-[55px] leading-[0.9]"
+                text-[45px] leading-[0.9]"
               >
                 <span className="text-center italic">
                   Tailored Spaces
