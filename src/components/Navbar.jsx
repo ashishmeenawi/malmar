@@ -18,7 +18,7 @@ const footerFontStyle = {
     '"__antiqueLegacy_623eb9", "__antiqueLegacy_Fallback_623eb9", "AntiqueLegacy", sans-serif',
   letterSpacing: "0.12em",
   lineHeight: "1.7",
-  color: "rgba(120, 35, 62, 0.6)",
+  color: "rgba(67, 67, 67, 0.6)",
 };
 
 const Navbar = () => {
