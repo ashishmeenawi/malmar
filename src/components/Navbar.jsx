@@ -12,12 +12,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ✅ Footer Typography */
+/* ✅ Footer Typography + Color */
 const footerFontStyle = {
   fontFamily:
     '"__antiqueLegacy_623eb9", "__antiqueLegacy_Fallback_623eb9", "AntiqueLegacy", sans-serif',
-  letterSpacing: "1.4px",
-  lineHeight: "20px",
+  letterSpacing: "0.12em",
+  lineHeight: "1.7",
+  color: "rgba(120, 35, 62, 0.6)",
 };
 
 const Navbar = () => {
@@ -166,12 +167,16 @@ const Navbar = () => {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  /* ✅ Prevent Background Scroll */
+  /* ✅ iPhone Safe Scroll Lock */
   useEffect(() => {
     if (typeof document !== "undefined") {
-      document.body.style.overflow = isMenuOpen
-        ? "hidden"
-        : "auto";
+      if (isMenuOpen) {
+        document.body.style.overflow = "hidden";
+        document.body.style.touchAction = "none";
+      } else {
+        document.body.style.overflow = "";
+        document.body.style.touchAction = "";
+      }
     }
   }, [isMenuOpen]);
 
@@ -258,13 +263,34 @@ const Navbar = () => {
       {/* ================= FULLSCREEN MENU ================= */}
       <div
         ref={menuRef}
-        className="fixed top-0 left-0 w-full h-screen z-[90] -translate-y-full flex flex-col justify-between px-6 md:px-12 py-10 md:py-20 text-black"
+        className="
+          fixed
+          inset-0
+          w-full
+          h-[100svh]
+          min-h-screen
+          z-[90]
+          -translate-y-full
+          flex
+          flex-col
+          justify-between
+          overflow-y-auto
+          overscroll-none
+          touch-pan-y
+          px-6
+          md:px-12
+          pt-28
+          pb-10
+          md:py-20
+          text-black
+        "
         style={{
           backgroundColor: "#fcefd4",
+          WebkitOverflowScrolling: "touch",
         }}
       >
         {/* MENU ITEMS */}
-        <div className="flex-1 flex flex-col items-center justify-center space-y-6">
+        <div className="flex-1 flex flex-col items-center justify-center space-y-6 md:space-y-8">
           {["Projects", "Services", "About"].map(
             (item) => (
               <a
@@ -273,7 +299,14 @@ const Navbar = () => {
                 onClick={() =>
                   setIsMenuOpen(false)
                 }
-                className="menu-item uppercase nav-font text-[28px] md:text-[64px]"
+                className="
+                  menu-item
+                  uppercase
+                  nav-font
+                  text-[32px]
+                  md:text-[64px]
+                  leading-[1]
+                "
               >
                 {item}
               </a>
@@ -282,9 +315,9 @@ const Navbar = () => {
         </div>
 
         {/* MENU FOOTER */}
-        <div className="menu-footer w-full flex flex-col space-y-12 text-[12px]">
+        <div className="menu-footer w-full flex flex-col space-y-10 text-[8px] pb-safe">
 
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-8">
 
             {/* LEFT SOCIAL */}
             <div className="flex flex-col space-y-2">
@@ -297,7 +330,7 @@ const Navbar = () => {
                 <a
                   key={social}
                   href="#"
-                  className="uppercase hover:opacity-60 transition-all duration-300"
+                  className="uppercase hover:opacity-90 transition-all duration-300"
                   style={footerFontStyle}
                 >
                   {social}
@@ -315,7 +348,7 @@ const Navbar = () => {
                 <a
                   key={link}
                   href="#"
-                  className="uppercase hover:opacity-60 transition-all duration-300"
+                  className="uppercase hover:opacity-90 transition-all duration-300"
                   style={footerFontStyle}
                 >
                   {link}
@@ -324,12 +357,12 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* BOTTOM COPYRIGHT */}
+          {/* COPYRIGHT */}
           <div
-            className="text-center opacity-40 uppercase text-[8px]"
+            className="text-center uppercase text-[8px]"
             style={footerFontStyle}
           >
-            REGISTERED TRADE MARK OF MALMAR 2026
+            COPYRIGHT MALMAR STUDIO 2026
           </div>
         </div>
       </div>
