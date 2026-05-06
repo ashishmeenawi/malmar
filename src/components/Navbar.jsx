@@ -16,8 +16,8 @@ if (typeof window !== "undefined") {
 const footerFontStyle = {
   fontFamily:
     '"__antiqueLegacy_623eb9", "__antiqueLegacy_Fallback_623eb9", "AntiqueLegacy", sans-serif',
-  letterSpacing: "0.12em",
-  lineHeight: "1.7",
+  letterSpacing: "0.2px",
+  lineHeight: "1.2",
   color: "rgba(67, 67, 67, 0.6)",
 };
 
@@ -229,7 +229,7 @@ const Navbar = () => {
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={toggleMenu}
-            className="md:hidden uppercase nav-font tracking-[2.1px]"
+            className="md:hidden uppercase nav-font text-[16px] tracking-[0.6px]"
           >
             {isMenuOpen ? "CLOSE" : "MENU"}
           </button>
@@ -250,7 +250,10 @@ const Navbar = () => {
         </div>
 
         {/* RIGHT NAV */}
-        <div className="flex justify-end uppercase nav-font text-[14px] tracking-[2.1px]">
+ <div
+  className="flex justify-end uppercase nav-font text-[16px] tracking-[.2px]"
+  style={{ fontWeight: 500 }}
+>
           <Link
             href="/contact"
             className="hover:opacity-70 transition-all duration-300"
