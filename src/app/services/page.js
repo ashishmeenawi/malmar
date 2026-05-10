@@ -295,7 +295,7 @@ export default function ServicesPage() {
         {/* Background Image Layer */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/services-hero.png')" }}
+          style={{ backgroundImage: "url('/services-hero1.jpeg')" }}
         />
         {/* Subtle Dark Overlay */}
         <div className="absolute inset-0 bg-black/20 z-10" />
@@ -323,9 +323,9 @@ export default function ServicesPage() {
             style={narrativeHeadingStyle}
             className="services-narrative-heading max-w-[1000px] max-md:w-full"
           >
-            <span className="block">REALISATION of EXTRAORDINARY</span>
-            <span className="pl-16 md:pl-18 max-md:pl-6 inline-block">DETAIL and an UNRIVALLED</span>
-            <span className="block">DEDICATION to MATERIAL.</span>
+            <span className="block">Meticulous detail.</span>
+            <span className="pl-16 md:pl-18 max-md:pl-6 inline-block">Unmatched materiality.</span>
+            {/* <span className="block"></span> */}
           </h2>
         </div>
 
@@ -333,12 +333,15 @@ export default function ServicesPage() {
         <div className="hidden md:grid grid-cols-2 gap-12 md:gap-x-16 md:w-1/2 ml-auto">
           <div style={narrativeBodyStyle}>
             <p className="mb-6">
-              Elicyon is an award-winning design studio renowned for crafting spaces that combine individuality, refinement and enduring quality. From elegant residences to innovative workplaces and landmark developments, we create environments that balance function and beauty, while reflecting the unique identity of each client. As a leading luxury design studio, our work spans the full spectrum of design and delivery, from initial concept and spatial planning to architectural detailing, bespoke interior design and final installation.
-            </p>
+            Malmar is a design studio renowned for creating spaces defined by individuality, refinement, and enduring quality. From elegant residences to innovative workplaces and landmark developments, we craft environments that seamlessly balance beauty and functionality while reflecting the distinct identity of each client.
+            Our work spans the full spectrum of design and delivery from concept development and spatial planning to architectural detailing, bespoke interiors, and final installation with a meticulous focus on materiality, craftsmanship, and timeless design.
+           </p>
           </div>
           <div style={narrativeBodyStyle}>
             <p className="mb-6">
-              With in-house expertise across interior design, architecture and project management, we offer a fully integrated service that ensures every project is cohesive, meticulously executed and tailored to its purpose. We collaborate with an international network of artisans, suppliers and craftspeople, sourcing materials and creating pieces that are both timeless and distinctive. Every decision is made with intention, considering sustainability, longevity and the story a space will tell.
+             With in-house expertise spanning interior design, architecture, and project management, we provide a fully integrated approach that ensures every project is cohesive, meticulously executed, and thoughtfully tailored to its purpose.
+
+We collaborate with an international network of artisans, makers, and suppliers, carefully sourcing materials and crafting bespoke elements that are timeless, distinctive, and enduring in quality. Every decision is made with  balancing aesthetics, functionality, sustainability, and longevity to create spaces with depth, character, and a lasting sense of place.
             </p>
           </div>
         </div>
