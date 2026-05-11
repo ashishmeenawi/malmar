@@ -122,22 +122,26 @@ export default function ProjectSection() {
       `}} />
       {/* SECTION HEADER */}
       <section className="w-full flex flex-col items-end pt-30 pb-16 md:pb-12 text-black bg-[#f8f7f3] px-6 md:px-12">
-        <h2
-          ref={headerRef}
-          className="uppercase leading-[0.8] text-right w-full pr-0 md:pr-10"
-          style={{
-            fontFamily: "'SageNav', sans-serif",
-            fontWeight: 400,
-            color: "rgb(0, 0, 0)",
-            fontSize: "2.5rem",
-            letterSpacing: "-0.02em"
-          }}
-        >
-          <div className="block">OUR</div>
-          <div className="block max-md:-mt-3" style={{ fontStyle: "italic" }}>
-            PROJECTS
-          </div>
-        </h2>
+       <h2
+  ref={headerRef}
+  className="uppercase text-right w-full pr-0 md:pr-10 leading-none"
+  style={{
+    fontFamily: "'SageNav', sans-serif",
+    fontWeight: 400,
+    color: "rgb(0, 0, 0)",
+    fontSize: "2.5rem",
+    letterSpacing: "0px",
+  }}
+>
+  <div className="block leading-1.5px">OUR</div>
+
+  <div
+    className="block leading-none -mt-2 md:-mt-3"
+    style={{ fontStyle: "italic" }}
+  >
+    PROJECTS
+  </div>
+</h2>
 
         <p
           className="max-w-fit text-right font-normal mt-2 pr-0 md:pr-10"
