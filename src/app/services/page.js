@@ -100,24 +100,20 @@ export default function ServicesPage() {
   }, []);
 
   const recognitionData = [
-    "The Brit List Awards 2025 | Interior Designer of the Year Finalist",
-    "Spear's 500 2026 | Index & Top Flight Advisor",
-    "House & Gardens Interior Designers & Architecture Top 100 2025",
-    "Country & Townhouse Top 50 Finest Interior Designers 2025/2026",
-    "1st Dibs Top 50 Honoree 2025",
-    "Architectural Digest India Top 100 2025",
-    "SBID Interior Design Icon 2025",
-    "Design et al Designer of the Year 2025 Finalist",
-  ];
+    "Upper Cheney Row - London",
+    "Can Crimar Guest House - Ibiza",
+    "Las boas - Ibiza",
+    "Bespoke Health Quarters - Ibiza",
+    "Penthouse Marina Botafoch - Ibiza",
+    ];
 
   const awardsData = [
-    "The Global Brands Award 2025 | The Most Innovative Interior Architecture Firm UK",
-    "The International Property Awards 2025 | Residential Interior Show Home UK Winner 60 Curzon Apartment",
-    "Design et al International Design & Architecture 2025 Awards | Luxury Residence — London Winner Lancaster Residence",
-    "SBID UK 2025 | Show Flats & Development Regional Winner 60 Curzon Apartment",
-    "SBID Arabian, Dubai & Saudi Arabian Property & Hotel Awards 2025 | Residential Interior Private Residence Winner Dubai Family Villa",
-    "Homes & Gardens Design Awards 2024 | Best Remodel",
-    "SBID Awards 2024 | Ultra-Luxury Residential Property UK",
+    "Rocca Llisa - Ibiza",
+    "Drayton Gardens - London",
+    "Glebe Place - London",
+    "Casa Angulo - Ibiza",
+    "venue Franklin D Roosevelt - Paris",
+    "Rue la Boetie - Paris ",
   ];
 
   const headingStyle = {
@@ -568,7 +564,7 @@ We collaborate with an international network of artisans, makers, and suppliers,
 
       {/* A Refined Process Section - Natural Scroll */}
       <section
-        className="relative w-full bg-[#6d88c7] px-10 md:px-20 py-32 max-md:py-16 max-md:px-6"
+        className="relative w-full bg-[#fcefd4] px-10 md:px-20 py-32 max-md:py-16 max-md:px-6"
       >
         {/* Header - Scrolls with section */}
         <div className="mb-32 max-md:mb-10">
@@ -627,14 +623,18 @@ We collaborate with an international network of artisans, makers, and suppliers,
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 max-w-[1600px] mx-auto">
 
           {/* Left Column: Heading */}
-          <div className="lg:col-span-4">
-            <h2
-              className="sticky top-24 text-6xl md:text-7xl max-md:!text-[32px] max-md:!leading-[37px] leaders-heading-fix font-light uppercase leading-[0.9] tracking-tighter text-black max-md:relative max-md:top-0 max-md:pt-4 max-md:mb-16"
-              style={headingStyle}
-            >
-              Leaders <br /> <span className="inline-block ml-10 max-md:ml-16">in Design</span>
-            </h2>
-          </div>
+         <div className="lg:col-span-4">
+  <h2
+    className="sticky top-24 text-6xl md:text-7xl max-md:!text-[32px] max-md:!leading-[37px] leaders-heading-fix font-light uppercase tracking-[-0.04em] text-black max-md:relative max-md:top-0 max-md:pt-4 max-md:mb-16"
+    style={headingStyle}
+  >
+    Crafted <br />
+
+    <span className="inline-block -mt-3 ml-10 max-md:ml-16 leading-none">
+      Through <span className="italic leading-none">Design</span>
+    </span>
+  </h2>
+</div>
 
           {/* Right Column: List */}
           <div className="lg:col-span-8 lg:pt-12">
@@ -650,9 +650,10 @@ We collaborate with an international network of artisans, makers, and suppliers,
                   color: "rgb(0, 0, 0)",
                   textTransform: "uppercase",
                   letterSpacing: "0.25em"
+                  
                 }}
               >
-                Recognition
+                <b>2026</b>
               </h3>
               <div className="border-t border-black">
                 {recognitionData.map((item, idx) => (
@@ -689,7 +690,7 @@ We collaborate with an international network of artisans, makers, and suppliers,
                   letterSpacing: "0.25em"
                 }}
               >
-                Awards
+                <b>2024 - 2025</b>
               </h3>
               <div className="border-t border-black">
                 {awardsData.map((item, idx) => (

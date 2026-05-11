@@ -13,21 +13,25 @@ export default function ServicesSection() {
         <div className="w-full">
 
           <div className="mb-12 md:mb-16 flex flex-col items-start">
-            <h2
-              className="uppercase leading-[0.8] text-left w-full"
-              style={{
-                fontFamily: "'SageNav', sans-serif",
-                fontWeight: 400,
-                color: "rgb(0, 0, 0)",
-                fontSize: "3rem",
-                letterSpacing: "-0.02em"
-              }}
-            >
-              <div className="block">OUR</div>
-              <div className="block pl-10 md:pl-20 max-md:-mt-3" style={{ fontStyle: "italic" }}>
-                SERVICES
-              </div>
-            </h2>
+           <h2
+  className="uppercase text-left w-full leading-none"
+  style={{
+    fontFamily: "'SageNav', sans-serif",
+    fontWeight: 400,
+    color: "rgb(0, 0, 0)",
+    fontSize: "40px",
+    letterSpacing: "4px",
+  }}
+>
+  <div className="block leading 1.5px">OUR</div>
+
+  <div
+    className="block pl-10 md:pl-20 leading 1.5px -mt-2 md:-mt-3"
+    style={{ fontStyle: "italic" }}
+  >
+    SERVICES
+  </div>
+</h2>
             <p
               className="text-[14px] leading-[1.4] mt-6 md:mt-5 max-w-[320px] text-left"
               style={{
