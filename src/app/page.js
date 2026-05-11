@@ -1,6 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Preloader from "@/components/Preloader";
 import HeroSection from "@/components/HeroSection";
 import ElicyonTextSection from "@/components/ElicyonTextSection";
@@ -14,6 +16,20 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+ 
+  useEffect(() => {
+    if (!isLoading) {
+      // Ensure GSAP knows about the updated layout after preloader is gone
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.refresh();
+      
+      // Small delay to catch any late layout shifts
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   return (
     <main className="relative min-h-screen bg-white">

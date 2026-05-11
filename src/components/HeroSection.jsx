@@ -14,8 +14,7 @@ const HeroSection = ({ isLoading }) => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Keep only if NOT using Lenis
-    ScrollTrigger.normalizeScroll(true);
+    // ScrollTrigger.normalizeScroll(true);
 
     if (heroImage.current) {
       heroImage.current.play().catch(() => {});

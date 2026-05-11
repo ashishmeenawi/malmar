@@ -27,9 +27,11 @@ export default function ProjectSection() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: `+=${slides.length * 250}%`,
+        end: `+=${slides.length * 120}%`, // Balanced speed
         pin: true,
-        scrub: true,
+        scrub: 0.5,
+        fastScrollEnd: true,
+        invalidateOnRefresh: true,
       }
     });
 
@@ -46,65 +48,48 @@ export default function ProjectSection() {
     });
 
     slides.forEach((slide, i) => {
-      const letters = slide.querySelectorAll('.letter-inner');
       const image = slide.querySelector('.project-image');
       const details = slide.querySelector('.project-details');
-      const imageInner = slide.querySelector('.image-inner');
+      const title = slide.querySelector('.project-title-simple');
 
-      // 0. INITIAL STATE (Immediate Visibility + 3-Row Pattern from Screenshot)
-      gsap.set(letters, {
-        y: (index) => {
-          const isMobile = window.innerWidth < 768;
-          if (isMobile) {
-            if (index % 3 === 0) return "0vh";      // Row 1 (Top)
-            if (index % 3 === 1) return "10vh";     // Row 3 (Bottom)
-            return "5vh";                           // Row 2 (Middle)
-          }
-          // Desktop pattern (more scattered as before)
-          if (index % 3 === 0) return "0vh";
-          if (index % 3 === 1) return "70vh";
-          return "35vh";
-        },
-        opacity: 1,
-        scale: 1
-      });
-
-      // 1. CLIP PATH REVEAL
+      // 1. CLIP PATH REVEAL + PARALLAX EXIT
       if (i !== 0) {
+        // Move previous slide up slightly (subtle parallax)
+        tl.to(slides[i - 1].querySelector('.project-image'), {
+          yPercent: -10,
+          duration: 1,
+          ease: "none"
+        }, `slide-${i}`);
+
+        // Move previous slide title up
+        tl.to(slides[i - 1].querySelector('.project-title-simple'), {
+          y: -50,
+          opacity: 0,
+          duration: 1,
+          ease: "none"
+        }, `slide-${i}`);
+
+        // Next slide overlaps from bottom
         tl.fromTo(slide,
           { clipPath: 'inset(100% 0% 0% 0%)' },
-          { clipPath: 'inset(0% 0% 0% 0%)', duration: 2, ease: "none" },
+          { clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: "none" },
           `slide-${i}`
         );
-        // Removed scale animation to keep image at actual size
       }
 
-      // 2. MERGE ANIMATION (To top row precisely)
-      tl.to(letters, {
-        y: "0%",
-        scale: 1,
-        duration: 2,
-        ease: "power2.inOut",
-        stagger: { each: 0.05, from: "start" }
-      }, i === 0 ? "0" : ">");
+      // 2. TITLE REVEAL
+      tl.fromTo(title,
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
+        i === 0 ? "0" : ">-0.5"
+      );
 
       // 3. DETAILS REVEAL
       tl.fromTo(details,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        "-=0.5"
+        { opacity: 1, y: 0, duration: 0.6 },
+        "-=0.4"
       );
-
-      // 4. SLIDE OUT (Moving letters up and away)
-      if (i < slides.length - 1) {
-        tl.to(letters, {
-          y: "-150%",
-          opacity: 0,
-          stagger: 0.02,
-          duration: 1,
-          ease: "power2.in"
-        }, "+=0.5");
-      }
     });
 
   }, { scope: wrapperRef });
@@ -182,34 +167,29 @@ export default function ProjectSection() {
               </div>
             </div>
 
-            {/* TYPOGRAPHY - Strictly Defined Pattern */}
-            <div className="relative z-20 w-full pt-[8vh] md:pt-[6vh] px-[4vw] md:px-[6vw]">
-              <h2 className="flex justify-between w-full text-white mix-blend-exclusion leading-none">
-                {project.title.split("").map((char, i) => (
-                  <span key={i} className="flex-1 flex justify-center">
-                    <span
-                      className="letter-inner inline-block will-change-transform"
-                      style={{
-                        fontFamily: "'SageNav', sans-serif",
-                        fontWeight: 400,
-                        fontSize: "clamp(48px, 40vw, 8vw)" // Responsive font sizing: 22vw max for desktop
-                      }}
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </span>
-                  </span>
-                ))}
+            {/* SIMPLE TITLE - LEFT ALIGNED */}
+            <div className="project-title-simple relative z-20 w-full pt-[15vh] md:pt-[25vh] px-[6vw] md:px-[8vw]">
+              <h2
+                className="text-white mix-blend-exclusion leading-none text-left uppercase"
+                style={{
+                  fontFamily: "'SageNav', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "clamp(30px, 6vw, 64px)",
+                  letterSpacing: "0.05em"
+                }}
+              >
+                {project.title}
               </h2>
             </div>
 
             {/* PROJECT INFO */}
             <div className="project-details absolute bottom-8 right-6 md:bottom-12 md:right-12 text-right text-white z-30">
-              <h4 className="mb-2 md:mb-4 uppercase flex flex-col items-end" style={{ fontFamily: "'SageNav', sans-serif", fontWeight: 400, fontSize: '35px', lineHeight: '1.1' }}>
+              <h4 className="mb-1 md:mb-2 uppercase flex flex-col items-end" style={{ fontFamily: "'SageNav', sans-serif", fontWeight: 400, fontSize: '24px', lineHeight: '1.2' }}>
                 <span className="block md:inline">{project.subtitle.split(" - ")[0]}</span>
                 <span className="block md:hidden h-0.5 w-full"></span>
                 <span className="block md:inline">{project.subtitle.split(" - ")[1]}</span>
               </h4>
-              <Link href="/projects" className="uppercase tracking-widest text-[11px] md:text-sm hover:opacity-50 transition-opacity" style={{ fontFamily: '"__antiqueLegacy_623eb9", "__antiqueLegacy_Fallback_623eb9", sans-serif', fontWeight: 400 }}>
+              <Link href="/projects" className="uppercase tracking-[0.2em] text-[10px] md:text-[11px] hover:opacity-50 transition-opacity" style={{ fontFamily: '"__antiqueLegacy_623eb9", "__antiqueLegacy_Fallback_623eb9", sans-serif', fontWeight: 400 }}>
                 <span className="border-b border-white pb-0.5">View Project</span>
               </Link>
             </div>
