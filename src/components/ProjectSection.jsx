@@ -22,20 +22,9 @@ export default function ProjectSection() {
 
   useGSAP(() => {
     const slides = gsap.utils.toArray('.project-slide');
+    if (!slides.length || !containerRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: `+=${slides.length * 120}%`, // Balanced speed
-        pin: true,
-        scrub: 0.5,
-        fastScrollEnd: true,
-        invalidateOnRefresh: true,
-      }
-    });
-
-    // Header reveal animation
+    // Header reveal animation (preserved)
     gsap.from(headerRef.current, {
       y: 100,
       opacity: 0,
@@ -47,50 +36,45 @@ export default function ProjectSection() {
       }
     });
 
+    // 1. Set initial states - panels below (except first)
     slides.forEach((slide, i) => {
-      const image = slide.querySelector('.project-image');
-      const details = slide.querySelector('.project-details');
-      const title = slide.querySelector('.project-title-simple');
-
-      // 1. CLIP PATH REVEAL + PARALLAX EXIT
-      if (i !== 0) {
-        // Move previous slide up slightly (subtle parallax)
-        tl.to(slides[i - 1].querySelector('.project-image'), {
-          yPercent: -10,
-          duration: 1,
-          ease: "none"
-        }, `slide-${i}`);
-
-        // Move previous slide title up
-        tl.to(slides[i - 1].querySelector('.project-title-simple'), {
-          y: -50,
-          opacity: 0,
-          duration: 1,
-          ease: "none"
-        }, `slide-${i}`);
-
-        // Next slide overlaps from bottom
-        tl.fromTo(slide,
-          { clipPath: 'inset(100% 0% 0% 0%)' },
-          { clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: "none" },
-          `slide-${i}`
-        );
+      if (i > 0) {
+        gsap.set(slide, { yPercent: 100 });
       }
-
-      // 2. TITLE REVEAL
-      tl.fromTo(title,
-        { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
-        i === 0 ? "0" : ">-0.5"
-      );
-
-      // 3. DETAILS REVEAL
-      tl.fromTo(details,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6 },
-        "-=0.4"
-      );
     });
+
+    // 2. Build master timeline
+    const master = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: () => `+=${(projects.length - 1) * window.innerHeight}`,
+        pin: true,
+        pinType: "transform",
+        pinSpacing: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    for (let i = 0; i < slides.length - 1; i++) {
+      const current = slides[i];
+      const next = slides[i + 1];
+
+      // Current panel scales down (recedes behind)
+      master.to(current, {
+        scale: 0.9,
+        duration: 1,
+        ease: "none"
+      }, i);
+
+      // Next panel slides up from bottom and overlaps
+      master.to(next, {
+        yPercent: 0,
+        duration: 1,
+        ease: "none"
+      }, i);
+    }
 
   }, { scope: wrapperRef });
 
@@ -160,13 +144,20 @@ export default function ProjectSection() {
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className="project-slide absolute inset-0 w-full h-screen flex flex-col items-center"
-            style={{ zIndex: index + 10 }}
+            className="project-slide absolute inset-0 w-full h-screen flex flex-col items-center overflow-hidden"
+            style={{ 
+              zIndex: index + 10,
+              willChange: "transform",
+              borderRadius: index > 0 ? "30px 30px 0 0" : "0",
+              boxShadow: index > 0 ? "0 -20px 50px rgba(0,0,0,0.4)" : "none",
+              backgroundColor: "#000" // Ensure background is solid for stacking
+            }}
           >
             {/* FULL BACKGROUND IMAGE */}
             <div className="project-image absolute inset-0 w-full h-full overflow-hidden">
               <div className="image-inner w-full h-full">
                 <img src={project.image} alt="" className="w-full h-full object-cover" />
+                {/* Subtle overlay for contrast without darkening the left side */}
                 <div className="absolute inset-0 bg-black/10" />
               </div>
             </div>
@@ -174,12 +165,13 @@ export default function ProjectSection() {
             {/* SIMPLE TITLE - LEFT ALIGNED */}
             <div className="project-title-simple relative z-20 w-full pt-[15vh] md:pt-[25vh] px-[6vw] md:px-[8vw]">
               <h2
-                className="text-white mix-blend-exclusion leading-none text-left uppercase"
+                className="text-white leading-none text-left uppercase"
                 style={{
                   fontFamily: "'SageNav', sans-serif",
                   fontWeight: 400,
                   fontSize: "clamp(30px, 6vw, 64px)",
-                  letterSpacing: "0.05em"
+                  letterSpacing: "0.05em",
+                  textShadow: "0 4px 20px rgba(0,0,0,0.6)"
                 }}
               >
                 {project.title}
@@ -188,7 +180,7 @@ export default function ProjectSection() {
 
             {/* PROJECT INFO */}
             <div className="project-details absolute bottom-8 right-6 md:bottom-12 md:right-12 text-right text-white z-30">
-              <h4 className="mb-1 md:mb-2 uppercase flex flex-col items-end" style={{ fontFamily: "'SageNav', sans-serif", fontWeight: 400, fontSize: '24px', lineHeight: '1.2' }}>
+              <h4 className="mb-1 md:mb-2 uppercase flex flex-col items-end" style={{ fontFamily: "'SageNav', sans-serif", fontWeight: 400, fontSize: '24px', lineHeight: '1.2', textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                 <span className="block md:inline">{project.subtitle.split(" - ")[0]}</span>
                 <span className="block md:hidden h-0.5 w-full"></span>
                 <span className="block md:inline">{project.subtitle.split(" - ")[1]}</span>
