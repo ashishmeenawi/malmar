@@ -127,7 +127,10 @@ const ElicyonTextSection = () => {
   {/* TEXT CONTENT */}
   <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center z-10 text-center px-4 pointer-events-none">
 
-    <div ref={textWrapper} className="flex flex-col items-center">
+    <div
+      ref={textWrapper}
+      className="flex flex-col items-center leading-[53px]"
+    >
 
       {/* Line 1 */}
       <div
@@ -137,7 +140,7 @@ const ElicyonTextSection = () => {
           textTransform: "none",
         }}
       >
-      Spaces that
+        Spaces that
       </div>
 
       {/* Line 2 */}
